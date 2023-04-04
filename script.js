@@ -1,30 +1,27 @@
-//const url = "https://jsonplaceholder.typicode.com/posts/1";
-
 // define the API URL
-const url = 'https://jsonplaceholder.typicode.com/todos/1';
+const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
 
-// define the async function
+// define the async function that fetches data from the API and calls the callback function with the result
 async function fetchData(callback) {
-  try {
-    // fetch data from the API
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+  // fetch data from the API using the fetch() method and await the response
+  const response = await fetch(apiUrl);
 
-    // call the callback function with the data
-    callback(data);
-  } catch (error) {
-    console.error(error);
-  }
+  // parse the response body as JSON and get the title property
+  const data = await response.json();
+  const title = data.title;
+
+  // call the callback function with the title
+  callback(title);
 }
 
-// add event listener to the button
-document.querySelector('#btn').addEventListener('click', async () => {
-  // call the fetchData function and display the title in the output div
-  fetchData(data => {
-    const outputDiv = document.querySelector('#output');
-    outputDiv.textContent = data.title;
-  });
+// define the callback function that displays the title in the output div
+function displayTitle(title) {
+  const outputDiv = document.getElementById('output');
+  outputDiv.innerText = title;
+}
+
+// add an event listener to the btn button that fetches data from the API and displays the title in the output div when clicked
+const btn = document.getElementById('btn');
+btn.addEventListener('click', () => {
+  fetchData(displayTitle);
 });
-
-
-//your JS code here. If required.
