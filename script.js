@@ -1,7 +1,7 @@
 //const url = "https://jsonplaceholder.typicode.com/posts/1";
 
 // define the API URL
-const apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
+const url = 'https://jsonplaceholder.typicode.com/todos/1';
 
 // define the async function
 async function fetchData(callback) {
